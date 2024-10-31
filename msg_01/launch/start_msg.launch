@@ -1,0 +1,23 @@
+<launch>
+
+<node pkg="msg_01" type="msg_talker_01" name="talker_001" output="screen" />
+<node pkg="msg_01" type="msg_listener_01" name="listen_001" output="screen" />
+
+</launch>
+
+<!-- /*
+node 包含的某个节点
+
+pkg 《功能包》
+
+type 被运行的《节点文件》
+
+name 为《节点命名》
+
+output  设置日志的输出目标 
+
+
+
+rosclean check  显示日志文件所占用的磁盘空间。
+rosclean purge  删除所有旧的日志文件
+*/ -->

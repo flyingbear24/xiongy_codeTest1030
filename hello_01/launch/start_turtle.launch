@@ -1,0 +1,26 @@
+<launch>
+
+<node pkg="hello_01" type="hello_01_01" name="hello_01_name" output="screen" />
+<node pkg="turtlesim" type="turtlesim_node" name="t1" />
+<node pkg="turtlesim" type="turtle_teleop_key" name="key1" />
+
+</launch>
+
+
+<!-- /*
+node 包含的某个节点
+
+pkg 《功能包》
+
+type 被运行的《节点文件》
+
+name 为《节点命名》
+
+output  设置日志的输出目标 
+
+
+
+rosclean check  显示日志文件所占用的磁盘空间。
+rosclean purge  删除所有旧的日志文件
+*/ -->
+
