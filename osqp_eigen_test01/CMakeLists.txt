@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.0.2)
-project(msg_01)
+project(osqp_eigen_test01)
 
 ## Compile as C++11, supported in ROS Kinetic and newer
 # add_compile_options(-std=c++11)
@@ -7,11 +7,14 @@ project(msg_01)
 ## Find catkin macros and libraries
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
 ## is used, also find other catkin packages
+
+set(OsqpEigen_DIR "/usr/local/lib/cmake/OsqpEigen")
+find_package(OsqpEigen REQUIRED)
+
 find_package(catkin REQUIRED COMPONENTS
   roscpp
   rospy
   std_msgs
-  message_generation
 )
 
 ## System dependencies are found with CMake's conventions
@@ -48,10 +51,11 @@ find_package(catkin REQUIRED COMPONENTS
 ##   * add every package in MSG_DEP_SET to generate_messages(DEPENDENCIES ...)
 
 ## Generate messages in the 'msg' folder
-add_message_files(
-  FILES
-  Person.msg
-)
+# add_message_files(
+#   FILES
+#   Message1.msg
+#   Message2.msg
+# )
 
 ## Generate services in the 'srv' folder
 # add_service_files(
@@ -68,10 +72,10 @@ add_message_files(
 # )
 
 ## Generate added messages and services with any dependencies listed here
-generate_messages(
-  DEPENDENCIES
-  std_msgs
-)
+# generate_messages(
+#   DEPENDENCIES
+#   std_msgs
+# )
 
 ################################################
 ## Declare ROS dynamic reconfigure parameters ##
@@ -104,8 +108,8 @@ generate_messages(
 ## DEPENDS: system dependencies of this project that dependent projects also need
 catkin_package(
 #  INCLUDE_DIRS include
-#  LIBRARIES msg_01
- CATKIN_DEPENDS roscpp rospy std_msgs message_runtime
+#  LIBRARIES osqp_eigen_test01
+#  CATKIN_DEPENDS - roscpp rospy std_msgs
 #  DEPENDS system_lib
 )
 
@@ -122,7 +126,7 @@ include_directories(
 
 ## Declare a C++ library
 # add_library(${PROJECT_NAME}
-#   src/${PROJECT_NAME}/msg_01.cpp
+#   src/${PROJECT_NAME}/osqp_eigen_test01.cpp
 # )
 
 ## Add cmake target dependencies of the library
@@ -133,8 +137,7 @@ include_directories(
 ## Declare a C++ executable
 ## With catkin_make all packages are built within a single CMake context
 ## The recommended prefix ensures that target names across packages don't collide
-add_executable(msg_talker_01 src/msg_talker_01.cpp)
-add_executable(msg_listener_01 src/msg_listener_01.cpp)
+add_executable(osqp_eigen_t01 src/osqp_eigen_t01.cpp)
 
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the
@@ -144,12 +147,11 @@ add_executable(msg_listener_01 src/msg_listener_01.cpp)
 
 ## Add cmake target dependencies of the executable
 ## same as for the library above
-# add_dependencies(msg_talker_01 ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
-# add_dependencies(msg_listener_01 ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+# add_dependencies(${PROJECT_NAME}_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 
 ## Specify libraries to link a library or executable target against
-target_link_libraries(msg_talker_01 ${catkin_LIBRARIES})
-target_link_libraries(msg_listener_01 ${catkin_LIBRARIES})
+# target_link_libraries(osqp_eigen_t01  ${catkin_LIBRARIES} )
+target_link_libraries(osqp_eigen_t01 ${catkin_LIBRARIES} OsqpEigen::OsqpEigen)
 
 #############
 ## Install ##
@@ -198,7 +200,7 @@ target_link_libraries(msg_listener_01 ${catkin_LIBRARIES})
 #############
 
 ## Add gtest based cpp test target and link libraries
-# catkin_add_gtest(${PROJECT_NAME}-test test/test_msg_01.cpp)
+# catkin_add_gtest(${PROJECT_NAME}-test test/test_osqp_eigen_test01.cpp)
 # if(TARGET ${PROJECT_NAME}-test)
 #   target_link_libraries(${PROJECT_NAME}-test ${PROJECT_NAME})
 # endif()
